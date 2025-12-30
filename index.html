@@ -1,175 +1,735 @@
-# Create a single unified truthful CV + Portfolio document
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdullahi Yahye Ali - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-from docx import Document
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #3b82f6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+        }
 
-path = "/mnt/data/Abdullaahi_Yahye_Ali_Master_Profile.docx"
-doc = Document()
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
 
-doc.add_heading("ABDULLAAHI YAHYE ALI", 0)
-doc.add_paragraph("IT Support Specialist | Web Designer | Multimedia Specialist")
-doc.add_paragraph(
-    "Email: abdalleyahye@gmail.com | Phone: +252 616 775 304\n"
-    "Location: Mogadishu, Somalia | Website: www.abdalletech.com | LinkedIn: Abdullaahi-Yahye"
-)
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-doc.add_heading("Professional Summary", level=1)
-doc.add_paragraph(
-    "IT Support and Multimedia Specialist with over 4 years of hands-on experience in IT Help Desk support, "
-    "system troubleshooting, website design, and multimedia content creation. Experienced in supporting users, "
-    "maintaining Windows environments, managing websites, and producing digital media. All experience listed "
-    "is based on real professional work in Somalia."
-)
+        .section {
+            padding: 80px 0;
+        }
 
-doc.add_heading("Core Skills", level=1)
-skills = [
-    "IT Help Desk & Technical Support",
-    "Hardware & Software Troubleshooting",
-    "Windows Environments & Windows Server 2019",
-    "Computer Networking (Cisco IT Essentials)",
-    "Website Design & WordPress",
-    "Adobe Photoshop, Illustrator, Premiere Pro, After Effects",
-    "Video Editing & Multimedia Production",
-    "Social Media Marketing & Content Creation",
-    "Customer Support & Ticket Handling"
-]
-for s in skills:
-    doc.add_paragraph(s, style="List Bullet")
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
 
-doc.add_heading("Professional Experience", level=1)
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+        }
 
-doc.add_paragraph("IT Help Desk & Multimedia Specialist – Dalsan TV (Sep 2025 – Present)")
-doc.add_paragraph(
-    "• Troubleshoot hardware and software issues\n"
-    "• Support users via phone and on-site assistance\n"
-    "• Create and edit multimedia content for TV and social platforms"
-)
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
 
-doc.add_paragraph("Chief Technology Officer – Somali Women Voice Organization (Feb 2021 – Aug 2023)")
-doc.add_paragraph(
-    "• Led website design and maintenance\n"
-    "• Supported internal IT systems\n"
-    "• Improved digital presence and engagement"
-)
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
 
-doc.add_heading("Projects & Portfolio Highlights", level=1)
-doc.add_paragraph(
-    "• Website development and management using WordPress\n"
-    "• Graphic design using Adobe Photoshop and Illustrator\n"
-    "• Video editing using Premiere Pro and After Effects\n"
-    "• Social media content creation and marketing"
-)
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
 
-doc.add_heading("Education", level=1)
-doc.add_paragraph(
-    "Bachelor of Science in Computer Science\n"
-    "Darussalam University – Mogadishu (2023)"
-)
+        .card:hover {
+            transform: translateY(-10px);
+        }
 
-doc.add_heading("Certifications (Selected)", level=1)
-certs = [
-    "Google IT Support Professional Certificate",
-    "Cisco IT Essentials & Networking Essentials",
-    "IBM Technical Support",
-    "Meta Social Media Marketing",
-    "Project Management – Nile University"
-]
-for c in certs:
-    doc.add_paragraph(c, style="List Bullet")
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 100px 0 80px;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
 
-doc.add_heading("Languages", level=1)
-doc.add_paragraph("Somali (Native), English (Professional Working Proficiency)")
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
 
-doc.add_heading("Declaration", level=1)
-doc.add_paragraph(
-    "I confirm that all information provided in this document is true and based on my real education, "
-    "skills, and professional experience."
-)
+        .profile-text {
+            flex: 1;
+            min-width: 300px;
+        }
 
-doc.save(path)
+        .profile-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
 
-path
-# Retry creating unified master CV + Portfolio document
+        .profile-text h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
 
-from docx import Document
+        .profile-text p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            color: rgba(255, 255, 255, 0.85);
+        }
 
-file_path = "/mnt/data/Abdullaahi_Yahye_Ali_Master_Profile.docx"
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
 
-doc = Document()
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-doc.add_heading("ABDULLAAHI YAHYE ALI", 0)
-doc.add_paragraph("IT Support Specialist | Web Designer | Multimedia Specialist")
+        .contact-item i {
+            font-size: 1.2rem;
+        }
 
-doc.add_paragraph(
-    "Email: abdalleyahye@gmail.com | Phone: +252 616 775 304\n"
-    "Location: Mogadishu, Somalia | Website: www.abdalletech.com"
-)
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #3b82f6, #60a5fa);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
 
-doc.add_heading("Professional Summary", level=1)
-doc.add_paragraph(
-    "IT Support and Multimedia Specialist with over 4 years of real professional experience in "
-    "IT Help Desk support, system troubleshooting, website design, and multimedia content creation. "
-    "All experience listed is based on actual work performed in Somalia."
-)
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
 
-doc.add_heading("Core Skills", level=1)
-skills = [
-    "IT Help Desk & Technical Support",
-    "Hardware & Software Troubleshooting",
-    "Windows Environments & Windows Server 2019",
-    "Computer Networking (Cisco)",
-    "Web Design & WordPress",
-    "Adobe Photoshop, Illustrator, Premiere Pro, After Effects",
-    "Video Editing & Multimedia Production",
-    "Social Media Marketing"
-]
-for skill in skills:
-    doc.add_paragraph(skill, style="List Bullet")
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
 
-doc.add_heading("Professional Experience", level=1)
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
 
-doc.add_paragraph("IT Help Desk & Multimedia Specialist – Dalsan TV (Sep 2025 – Present)")
-doc.add_paragraph(
-    "Provided IT support for hardware and software issues, assisted users, and "
-    "created multimedia content for media platforms."
-)
+        .skill-tag {
+            background-color: var(--light-gray);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
 
-doc.add_paragraph("Chief Technology Officer – Somali Women Voice Organization (Feb 2021 – Aug 2023)")
-doc.add_paragraph(
-    "Managed website development, supported IT systems, and improved digital presence."
-)
+        .skill-tag.primary {
+            background-color: var(--primary);
+            color: white;
+        }
 
-doc.add_heading("Projects & Portfolio", level=1)
-doc.add_paragraph(
-    "Website design projects, multimedia content creation, video editing, and "
-    "social media management for organizations and media companies."
-)
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
 
-doc.add_heading("Education", level=1)
-doc.add_paragraph(
-    "Bachelor of Science in Computer Science\n"
-    "Darussalam University – 2023"
-)
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
 
-doc.add_heading("Certifications", level=1)
-certifications = [
-    "Google IT Support Professional Certificate",
-    "Cisco IT Essentials",
-    "Cisco Networking Essentials",
-    "IBM Technical Support",
-    "Meta Social Media Marketing"
-]
-for cert in certifications:
-    doc.add_paragraph(cert, style="List Bullet")
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 40px;
+        }
 
-doc.add_heading("Languages", level=1)
-doc.add_paragraph("Somali (Native), English (Professional)")
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
 
-doc.add_heading("Declaration", level=1)
-doc.add_paragraph(
-    "I declare that the information provided above is true and correct to the best of my knowledge."
-)
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
 
-doc.save(file_path)
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
 
-file_path
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
 
+        .timeline-content .date {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        /* Education & Certificates */
+        .edu-certs {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .edu-cert-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .edu-cert-item h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .edu-cert-item .date {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-item {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .service-item h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-item::after {
+                left: 21px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="profile-text">
+                    <h1>Abdullahi Yahye Ali</h1>
+                    <h2>Technical Support | System Administrator | Network Administrator | Web Designer</h2>
+                    <p>Motivated Computer Science professional with 4+ years of experience. I work diligently for client satisfaction and always give 100% to provide satisfactory results. My pleasing personality and humble nature help me interact effectively with clients.</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>abdalleyahye@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+252616775304</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Mogadishu, Banaadir, Somalia</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="btn" style="margin-top: 20px;">Contact Me</a>
+                </div>
+                
+                <div class="profile-image">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Skills Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">My Key Skills</h2>
+            
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Technical Skills</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag primary">IT Helpdesk</span>
+                        <span class="skill-tag primary">Troubleshooting</span>
+                        <span class="skill-tag">Windows Server 2019</span>
+                        <span class="skill-tag">System Administration</span>
+                        <span class="skill-tag">Computer Networking</span>
+                        <span class="skill-tag primary">Cisco CCNA</span>
+                        <span class="skill-tag">Website Design</span>
+                        <span class="skill-tag">WordPress</span>
+                        <span class="skill-tag">Graphic Design</span>
+                        <span class="skill-tag">SAP Recordkeeping</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Soft Skills</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Client Satisfaction</span>
+                        <span class="skill-tag">Public Speaking</span>
+                        <span class="skill-tag">Leadership</span>
+                        <span class="skill-tag">Project Management</span>
+                        <span class="skill-tag">Problem Solving</span>
+                        <span class="skill-tag">Communication</span>
+                        <span class="skill-tag">Team Collaboration</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Tools & Software</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Adobe Photoshop</span>
+                        <span class="skill-tag">Adobe Illustrator</span>
+                        <span class="skill-tag">Premiere Pro</span>
+                        <span class="skill-tag">After Effects</span>
+                        <span class="skill-tag">Microsoft Office</span>
+                        <span class="skill-tag">PowerPoint</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section" style="background-color: #f1f5f9;">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>IT HelpDesk & Multimedia</h3>
+                        <div class="date">Sep 2025 - Present</div>
+                        <p><strong>Dalsan TV, Mogadishu</strong></p>
+                        <p>Troubleshooting software and hardware problems. Handling user inquiries via phone, email, or web portal. Multimedia production using Photoshop, Illustrator, Premiere Pro, After Effects, and Adobe InDesign.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Deputy Chairperson - Youth Wing</h3>
+                        <div class="date">Jan 2025 - Jul 2025</div>
+                        <p><strong>Nagaad Party, Mogadishu</strong></p>
+                        <p>Led strategic planning and execution of youth engagement initiatives. Coordinated and mobilized youth members for political activities and community development projects. Organized leadership workshops and training sessions.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Printer Operator Officer</h3>
+                        <div class="date">Dec 2023 - Oct 2024</div>
+                        <p><strong>Frontier University, Mogadishu</strong></p>
+                        <p>Set printing press jobs per dockets to meet product design and quality standards. Updated SAP files to maintain detailed production and quality records. Monitored and adjusted printing runs based on inspections.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Printer Operator Officer</h3>
+                        <div class="date">Feb 2023 - Sep 2023</div>
+                        <p><strong>Aden Adde International University, Mogadishu</strong></p>
+                        <p>Managed printing operations and maintained quality control. Updated production records in SAP system for shift operations.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Chief Technology Officer</h3>
+                        <div class="date">Feb 2021 - Aug 2023</div>
+                        <p><strong>Somali Women Voice Organisation, Mogadishu</strong></p>
+                        <p>Managed end-to-end website development projects. Developed content to increase brand engagement and revenue. Oversaw technical operations and IT infrastructure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certificates -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Education & Certifications</h2>
+            
+            <div class="edu-certs">
+                <div class="edu-cert-item">
+                    <h3>Bachelor of Science: Computer Science</h3>
+                    <div class="date">Aug 2023</div>
+                    <p><strong>Darussalam University, Mogadishu</strong></p>
+                </div>
+                
+                <div class="edu-cert-item">
+                    <h3>Cisco Networking Essentials</h3>
+                    <div class="date">Feb 2021</div>
+                    <p>Prepared for Cisco Certified Network Support Technician and Help Desk Technician roles.</p>
+                </div>
+                
+                <div class="edu-cert-item">
+                    <h3>Google IT Support Professional</h3>
+                    <div class="date">Nov 2022</div>
+                    <p>Technical Support Fundamentals, Computer Networking, Operating Systems, and IT Security.</p>
+                </div>
+                
+                <div class="edu-cert-item">
+                    <h3>Project Management</h3>
+                    <div class="date">Jun 2024</div>
+                    <p><strong>Nile University</strong></p>
+                    <p>Completed training course in project management methodologies and practices.</p>
+                </div>
+                
+                <div class="edu-cert-item">
+                    <h3>Diploma in Public Speaking & Leadership</h3>
+                    <div class="date">Mar 2025</div>
+                    <p><strong>DEDAAL Academy</strong></p>
+                    <p>Enhanced communication and leadership capabilities.</p>
+                </div>
+                
+                <div class="edu-cert-item">
+                    <h3>IBM Technical Support</h3>
+                    <div class="date">Mar 2024</div>
+                    <p>Introduction to Technical Support, Software, Programming, Databases, and Cybersecurity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" style="background-color: #f1f5f9;">
+        <div class="container">
+            <h2 class="section-title">My Services</h2>
+            
+            <div class="services-grid">
+                <div class="service-item card">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>IT Helpdesk Support</h3>
+                    <p>Professional technical support and troubleshooting for hardware and software issues.</p>
+                </div>
+                
+                <div class="service-item card">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>System Administration</h3>
+                    <p>Management and maintenance of IT systems, servers, and network infrastructure.</p>
+                </div>
+                
+                <div class="service-item card">
+                    <div class="service-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Network Administration</h3>
+                    <p>Design, implementation, and management of computer networks and connectivity.</p>
+                </div>
+                
+                <div class="service-item card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web Design & Development</h3>
+                    <p>Creation of responsive, user-friendly websites and web applications.</p>
+                </div>
+                
+                <div class="service-item card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Graphic Design & Multimedia</h3>
+                    <p>Professional graphic design, video editing, and multimedia production.</p>
+                </div>
+                
+                <div class="service-item card">
+                    <div class="service-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Project Management</h3>
+                    <p>Planning, execution, and monitoring of IT and organizational projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            
+            <div style="max-width: 800px; margin: 40px auto 0;">
+                <div class="card">
+                    <h3 style="margin-bottom: 20px; color: var(--primary);">Get In Touch</h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                        <div>
+                            <h4 style="margin-bottom: 10px;">Contact Information</h4>
+                            <p><i class="fas fa-envelope" style="margin-right: 10px; color: var(--primary);"></i> abdalleyahye@gmail.com</p>
+                            <p><i class="fas fa-phone" style="margin-right: 10px; color: var(--primary);"></i> +252616775304</p>
+                            <p><i class="fas fa-map-marker-alt" style="margin-right: 10px; color: var(--primary);"></i> Mogadishu, Banaadir, Somalia</p>
+                            <p><i class="fas fa-globe" style="margin-right: 10px; color: var(--primary);"></i> abdalletech.com</p>
+                        </div>
+                        
+                        <div>
+                            <h4 style="margin-bottom: 10px;">Professional Profiles</h4>
+                            <p><i class="fab fa-linkedin" style="margin-right: 10px; color: var(--primary);"></i> Abdullahil-Yahye</p>
+                            <p><i class="fas fa-file-pdf" style="margin-right: 10px; color: var(--primary);"></i> Download Full CV</p>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <a href="mailto:abdalleyahye@gmail.com" class="btn">Send Email</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Abdullahi Yahye Ali</h3>
+                    <p>Technical Support Specialist | System Administrator | Web Designer with 4+ years of experience delivering quality IT solutions and client satisfaction.</p>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 10px;"><a href="#" style="color: white; text-decoration: none;">Home</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#skills" style="color: white; text-decoration: none;">Skills</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#experience" style="color: white; text-decoration: none;">Experience</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#contact" style="color: white; text-decoration: none;">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-envelope" style="margin-right: 10px;"></i> abdalleyahye@gmail.com</p>
+                    <p><i class="fas fa-phone" style="margin-right: 10px;"></i> +252616775304</p>
+                    <p><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> Mogadishu, Somalia</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>Copyright © 2025 Abdullahi Yahye Ali. All rights reserved.</p>
+                <p>Portfolio Design Inspired by Professional Templates</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
