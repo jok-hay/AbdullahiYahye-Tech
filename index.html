@@ -1,1 +1,175 @@
+# Create a single unified truthful CV + Portfolio document
+
+from docx import Document
+
+path = "/mnt/data/Abdullaahi_Yahye_Ali_Master_Profile.docx"
+doc = Document()
+
+doc.add_heading("ABDULLAAHI YAHYE ALI", 0)
+doc.add_paragraph("IT Support Specialist | Web Designer | Multimedia Specialist")
+doc.add_paragraph(
+    "Email: abdalleyahye@gmail.com | Phone: +252 616 775 304\n"
+    "Location: Mogadishu, Somalia | Website: www.abdalletech.com | LinkedIn: Abdullaahi-Yahye"
+)
+
+doc.add_heading("Professional Summary", level=1)
+doc.add_paragraph(
+    "IT Support and Multimedia Specialist with over 4 years of hands-on experience in IT Help Desk support, "
+    "system troubleshooting, website design, and multimedia content creation. Experienced in supporting users, "
+    "maintaining Windows environments, managing websites, and producing digital media. All experience listed "
+    "is based on real professional work in Somalia."
+)
+
+doc.add_heading("Core Skills", level=1)
+skills = [
+    "IT Help Desk & Technical Support",
+    "Hardware & Software Troubleshooting",
+    "Windows Environments & Windows Server 2019",
+    "Computer Networking (Cisco IT Essentials)",
+    "Website Design & WordPress",
+    "Adobe Photoshop, Illustrator, Premiere Pro, After Effects",
+    "Video Editing & Multimedia Production",
+    "Social Media Marketing & Content Creation",
+    "Customer Support & Ticket Handling"
+]
+for s in skills:
+    doc.add_paragraph(s, style="List Bullet")
+
+doc.add_heading("Professional Experience", level=1)
+
+doc.add_paragraph("IT Help Desk & Multimedia Specialist – Dalsan TV (Sep 2025 – Present)")
+doc.add_paragraph(
+    "• Troubleshoot hardware and software issues\n"
+    "• Support users via phone and on-site assistance\n"
+    "• Create and edit multimedia content for TV and social platforms"
+)
+
+doc.add_paragraph("Chief Technology Officer – Somali Women Voice Organization (Feb 2021 – Aug 2023)")
+doc.add_paragraph(
+    "• Led website design and maintenance\n"
+    "• Supported internal IT systems\n"
+    "• Improved digital presence and engagement"
+)
+
+doc.add_heading("Projects & Portfolio Highlights", level=1)
+doc.add_paragraph(
+    "• Website development and management using WordPress\n"
+    "• Graphic design using Adobe Photoshop and Illustrator\n"
+    "• Video editing using Premiere Pro and After Effects\n"
+    "• Social media content creation and marketing"
+)
+
+doc.add_heading("Education", level=1)
+doc.add_paragraph(
+    "Bachelor of Science in Computer Science\n"
+    "Darussalam University – Mogadishu (2023)"
+)
+
+doc.add_heading("Certifications (Selected)", level=1)
+certs = [
+    "Google IT Support Professional Certificate",
+    "Cisco IT Essentials & Networking Essentials",
+    "IBM Technical Support",
+    "Meta Social Media Marketing",
+    "Project Management – Nile University"
+]
+for c in certs:
+    doc.add_paragraph(c, style="List Bullet")
+
+doc.add_heading("Languages", level=1)
+doc.add_paragraph("Somali (Native), English (Professional Working Proficiency)")
+
+doc.add_heading("Declaration", level=1)
+doc.add_paragraph(
+    "I confirm that all information provided in this document is true and based on my real education, "
+    "skills, and professional experience."
+)
+
+doc.save(path)
+
+path
+# Retry creating unified master CV + Portfolio document
+
+from docx import Document
+
+file_path = "/mnt/data/Abdullaahi_Yahye_Ali_Master_Profile.docx"
+
+doc = Document()
+
+doc.add_heading("ABDULLAAHI YAHYE ALI", 0)
+doc.add_paragraph("IT Support Specialist | Web Designer | Multimedia Specialist")
+
+doc.add_paragraph(
+    "Email: abdalleyahye@gmail.com | Phone: +252 616 775 304\n"
+    "Location: Mogadishu, Somalia | Website: www.abdalletech.com"
+)
+
+doc.add_heading("Professional Summary", level=1)
+doc.add_paragraph(
+    "IT Support and Multimedia Specialist with over 4 years of real professional experience in "
+    "IT Help Desk support, system troubleshooting, website design, and multimedia content creation. "
+    "All experience listed is based on actual work performed in Somalia."
+)
+
+doc.add_heading("Core Skills", level=1)
+skills = [
+    "IT Help Desk & Technical Support",
+    "Hardware & Software Troubleshooting",
+    "Windows Environments & Windows Server 2019",
+    "Computer Networking (Cisco)",
+    "Web Design & WordPress",
+    "Adobe Photoshop, Illustrator, Premiere Pro, After Effects",
+    "Video Editing & Multimedia Production",
+    "Social Media Marketing"
+]
+for skill in skills:
+    doc.add_paragraph(skill, style="List Bullet")
+
+doc.add_heading("Professional Experience", level=1)
+
+doc.add_paragraph("IT Help Desk & Multimedia Specialist – Dalsan TV (Sep 2025 – Present)")
+doc.add_paragraph(
+    "Provided IT support for hardware and software issues, assisted users, and "
+    "created multimedia content for media platforms."
+)
+
+doc.add_paragraph("Chief Technology Officer – Somali Women Voice Organization (Feb 2021 – Aug 2023)")
+doc.add_paragraph(
+    "Managed website development, supported IT systems, and improved digital presence."
+)
+
+doc.add_heading("Projects & Portfolio", level=1)
+doc.add_paragraph(
+    "Website design projects, multimedia content creation, video editing, and "
+    "social media management for organizations and media companies."
+)
+
+doc.add_heading("Education", level=1)
+doc.add_paragraph(
+    "Bachelor of Science in Computer Science\n"
+    "Darussalam University – 2023"
+)
+
+doc.add_heading("Certifications", level=1)
+certifications = [
+    "Google IT Support Professional Certificate",
+    "Cisco IT Essentials",
+    "Cisco Networking Essentials",
+    "IBM Technical Support",
+    "Meta Social Media Marketing"
+]
+for cert in certifications:
+    doc.add_paragraph(cert, style="List Bullet")
+
+doc.add_heading("Languages", level=1)
+doc.add_paragraph("Somali (Native), English (Professional)")
+
+doc.add_heading("Declaration", level=1)
+doc.add_paragraph(
+    "I declare that the information provided above is true and correct to the best of my knowledge."
+)
+
+doc.save(file_path)
+
+file_path
 
